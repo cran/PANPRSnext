@@ -100,8 +100,7 @@ Rcpp::List gsfPEN_sparse_cpp(
             {
               int j = index_J(i);
 
-              double lambda1 = lambda0 + (Ifunc_SNP(j) == 1) * arma::sum(
-                                                                   z_matrix.row(j) % temp_lambda_vec);
+              double lambda1 = lambda0 + (Ifunc_SNP(j) == 1) * arma::as_scalar(z_matrix.row(j) * temp_lambda_vec);
 
               for (int q = 0; q < Q; q++)
               {
@@ -127,8 +126,7 @@ Rcpp::List gsfPEN_sparse_cpp(
           {
             int j = index_matrix(p, 0);
 
-            double lambda1 = lambda0 + (Ifunc_SNP(j) == 1) * arma::sum(
-                                                                 z_matrix.row(j) % temp_lambda_vec);
+            double lambda1 = lambda0 + (Ifunc_SNP(j) == 1) *arma::as_scalar(z_matrix.row(j) * temp_lambda_vec);
 
             for (int q = 0; q < Q; q++)
             {
